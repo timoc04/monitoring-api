@@ -31,19 +31,17 @@ jobs:
           tenant-id: ${{ secrets.CAMONITORINGAPI_AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.CAMONITORINGAPI_AZURE_SUBSCRIPTION_ID }}
 
-      - name: Build and push container image to registry
+      - name: Build and deploy Container App
         uses: azure/container-apps-deploy-action@v2
         with:
           appSourcePath: ${{ github.workspace }}
-          _dockerfilePathKey_: _dockerfilePath_
-          _targetLabelKey_: _targetLabel_
-          registryUrl: 
-          registryUsername: ${{ secrets.CAMONITORINGAPI_REGISTRY_USERNAME }}
-          registryPassword: ${{ secrets.CAMONITORINGAPI_REGISTRY_PASSWORD }}
+          dockerfilePath: Dockerfile
+          imageToBuild: acrmonitoringapi.azurecr.io/monitoring-api:${{ github.sha }}
           containerAppName: ca-monitoring-api
           resourceGroup: rg-database-services
-          imageToBuild: default/[parameters('containerAppName')]:${{ github.sha }}
-          _buildArgumentsKey_: |
-            _buildArgumentsValues_
-
-
+          registryUrl: acrmonitoringapi.azurecr.io
+          registryUsername: ${{ secrets.ACR_USERNAME }}
+          registryPassword: ${{ secrets.ACR_PASSWORD }}
+          targetPort: 5000
+          ingress: external
+          disableTelemetry: true
