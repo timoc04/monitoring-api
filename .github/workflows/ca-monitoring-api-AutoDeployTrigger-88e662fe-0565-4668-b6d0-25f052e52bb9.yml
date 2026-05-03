@@ -32,4 +32,5 @@ jobs:
           dockerfilePath: Dockerfile
           containerAppName: ca-monitoring-api
           resourceGroup: rg-database-services
+          acrName: acrmonitoringapi
           disableTelemetry: true
