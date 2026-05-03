@@ -33,4 +33,7 @@ jobs:
           containerAppName: ca-monitoring-api
           resourceGroup: rg-database-services
           acrName: acrmonitoringapi
+          registryUrl: acrmonitoringapi.azurecr.io
+          registryUsername: ${{ secrets.ACR_USERNAME }}
+          registryPassword: ${{ secrets.ACR_PASSWORD }}
           disableTelemetry: true
