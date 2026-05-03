@@ -40,8 +40,8 @@ jobs:
           containerAppName: ca-monitoring-api
           resourceGroup: rg-database-services
           registryUrl: acrmonitoringapi.azurecr.io
-          registryUsername: ${{ secrets.ACR_USERNAME }}
-          registryPassword: ${{ secrets.ACR_PASSWORD }}
+          acrUsername: ${{ secrets.ACR_USERNAME }}
+          acrPassword: ${{ secrets.ACR_PASSWORD }}
           targetPort: 5000
           ingress: external
           disableTelemetry: true
